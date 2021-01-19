@@ -1,24 +1,58 @@
 // ITERATION 1
+const cart = document.querySelectorAll('#cart tbody');
+const calc = document.getElementById('calculate'); 
 
 function updateSubtotal(product) {
-  console.log('Calculating subtotal, yey!');
 
-  //... your code goes here
-}
+    const priceSpan = product.querySelector('.price span');
+    const priceValue = priceSpan.innerText;
+
+    const quantityInput = product.querySelector('input');
+    const quantityValue = quantityInput.value;
+
+  //maybe the normal calculation doesn't work with floating numbers as in Iteration 2
+    const subtotalPrice = parseFloat(priceValue) * parseInt(quantityValue);
+    const subtotalSpan = product.querySelector('.subtotal span');
+    
+    // set the subtotal price to the corresponding DOM element.
+    subtotalSpan.innerText = subtotalPrice;
+
+    // return
+
+    return subtotalPrice;
+  }
+
+// ITERATION 2 *3
 
 function calculateAll() {
   // code in the following two lines is added just for testing purposes.
   // it runs when only iteration 1 is completed. at later point, it can be removed.
-  const singleProduct = document.querySelector('.product');
-  updateSubtotal(singleProduct);
-  // end of test
+  //const singleProduct = document.querySelector('.product');
+  //updateSubtotal(singleProduct);
+  
+  // call the function updateSubtotal with every tr.product DOM node in the table#cart.
+  const allProducts = document.querySelectorAll('tr.product');
+  //console.log(allProducts);
 
-  // ITERATION 2
-  //... your code goes here
+  let total = 0;
 
-  // ITERATION 3
-  //... your code goes here
+  for (let product of allProducts) {
+    // call the function updateSubtotal
+    let subtotal = updateSubtotal(product);
+    //define total state
+    //sumUP
+    total += subtotal;
+  }
+
+  // get the h2 span 
+  const totalSpan = document.getElementById('#total-value.span');
+  totalSpan.innerText = total;
+
+  
 }
+
+calc.addEventListener('click', calculateAll);
+console.log(total)
 
 // ITERATION 4
 
