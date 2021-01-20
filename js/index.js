@@ -32,27 +32,26 @@ function calculateAll() {
   
   // call the function updateSubtotal with every tr.product DOM node in the table#cart.
   const allProducts = document.querySelectorAll('tr.product');
-  //console.log(allProducts);
-
+  
+  //define totalSum state
   let total = 0;
 
   for (let product of allProducts) {
     // call the function updateSubtotal
-    let subtotal = updateSubtotal(product);
-    //define total state
-    //sumUP
-    total += subtotal;
+    //let subtotal = updateSubtotal(product);
+    //define totalSum
+    total += updateSubtotal(product);
+    
   }
 
-  // get the h2 span 
-  const totalSpan = document.getElementById('#total-value.span');
-  totalSpan.innerText = total;
+  // get the h2 span __ //This is not working 
+  let totalSpan = document.querySelector('#total-value span');
+  totalSpan.innerText = total; 
 
-  
 }
 
-calc.addEventListener('click', calculateAll);
-console.log(total)
+
+
 
 // ITERATION 4
 
